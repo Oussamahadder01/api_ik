@@ -10,9 +10,17 @@ class LocationData(BaseModel):
     address: str
     coordinates: Coordinates
 
+class LocationRequest(BaseModel):
+    HSNMR: str #Numero de rue
+    STRAS: str #Rue
+    LOCAT: str #Complement d'adresse
+    PSTLZ: str #Code postal
+    ORT01: str #Ville
+    LAND1: str #Pays
+
 class RouteRequest(BaseModel):
-    home_address: str
-    office_address: str
+    home: LocationRequest
+    office: LocationRequest
 
 class RouteResponse(BaseModel):
     status: Literal["success", "error"]

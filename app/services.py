@@ -40,15 +40,12 @@ class GeocodingService:
 class RoutingService:
     def __init__(self):
         self.ors_url = settings.ors_url
-        self.api_key = settings.ors_api_key
         
     async def calculate_distance(self, start_coords: Tuple[float, float], 
                                 end_coords: Tuple[float, float]) -> Optional[float]:
         """Calculate distance between two points using OpenRouteService"""
         try:
             headers = {}
-            if self.api_key:
-                headers["Authorization"] = self.api_key
                 
             async with httpx.AsyncClient() as client:
                 # ORS expects coordinates as [lon, lat]
